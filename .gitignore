@@ -1,0 +1,11 @@
+
+gittoken.txt
+/backend/venv/
+__pycache__/
+
+.env
+/backend/.env
+
+/frontend/node_modules/
+
+neo4j
