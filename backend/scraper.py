@@ -1,6 +1,7 @@
 import os 
 from dotenv import load_dotenv
 from github import Github, RateLimitExceededException, GithubExceptoin
+from neo4j import GraphDatabase
 import time
 
 load_dotenv()
@@ -10,8 +11,15 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
   raise Exception("GitHub Token not found! Please put the GITHUB_TOKEN")
 
-
 g = Github(GITHUB_TOKEN)
+
+# Neo4j authentication
+NEO4J_URI = os.getenv("NEO4J_URI")
+NEO4J_USER = os.getenv("NEO4J_USER")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+
+if not all([NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD]):
+    raise Exception("Neo4j credentials not found in .env file.")
 
 
 def get_repo_data(repo):
@@ -110,6 +118,52 @@ def scrape_github_data(seed_repo_name, max_repos=50, max_stargazers=50):
   return scraped_data
 
 
+def ingest_data_to_neo4j(driver, data):
+  """Writes the scraped data into the Neo4j database."""
+  # Create uniqueness constraints for faster lookups and data integrity
+  with driver.session(database="neo4j") as session:
+      session.run("CREATE CONSTRAINT IF NOT EXISTS FOR (r:Repository) REQUIRE r.full_name IS UNIQUE")
+      session.run("CREATE CONSTRAINT IF NOT EXISTS FOR (u:User) REQUIRE u.login IS UNIQUE")
+
+  # Ingest repositories
+  with driver.session(database="neo4j") as session:
+      for repo_name, repo_data in data["repos"].items():
+          session.execute_write(
+              lambda tx: tx.run("""
+                  MERGE (r:Repository {full_name: $full_name})
+                  SET r.language = $language,
+                      r.stargazers_count = $stargazers_count,
+                      r.forks_count = $forks_count,
+                      r.description = $description
+              """, **repo_data)
+          )
+  print("Ingested all Repository nodes.")
+
+  # Ingest users
+  with driver.session(database="neo4j") as session:
+      for user_login, user_data in data["users"].items():
+          session.execute_write(
+              lambda tx: tx.run("""
+                  MERGE (u:User {login: $login})
+                  SET u.name = $name,
+                      u.bio = $bio
+              """, **user_data)
+          )
+  print("Ingested all User nodes.")
+
+  # Ingest star relationships
+  with driver.session(database="neo4j") as session:
+      for user_login, repo_name in data["stars"]:
+          session.execute_write(
+              lambda tx: tx.run("""
+                  MATCH (u:User {login: $user_login})
+                  MATCH (r:Repository {full_name: $repo_name})
+                  MERGE (u)-[:STARS]->(r)
+              """, user_login=user_login, repo_name=repo_name)
+          )
+          
+  print("Ingested all STARS relationships.")
+
 
 if __name__ == "__main__":
   seed_repository = "tensorflow/tensorflow"
@@ -117,3 +171,17 @@ if __name__ == "__main__":
 
   # import json
   # print(json.dumps(final_data, indent=2))
+
+  driver = None
+  try:
+    # Create a driver instance
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    driver.verify_connectivity() 
+    print("\n--- Connecting to Neo4j and starting ingestion... ---")
+    ingest_data_to_neo4j(driver, final_data)
+    print("--- Data ingestion complete! ---")
+  except Exception as e:
+    print(f'An error occured during Neo4j ingestion: {e}')
+  finally:
+    if driver:
+      driver.close()
