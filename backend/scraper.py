@@ -99,3 +99,21 @@ def scrape_github_data(seed_repo_name, max_repos=50, max_stargazers=50):
       print(f"!!! An error occurred for repo {current_repo_name}: {e} !!!")
     except Exception as e:
       print(f" Unexpeceted error occured: {e}")
+  
+
+  print(f"\n--- Scrping Complete ---")
+  print(f"Total Repos Found: {len(scraped_data['repos'])}")
+  print(f"Total Users Found: {len(scraped_data['users'])}")
+  print(f"Total Star Relationships Found: {len(scraped_data['stars'])}")
+
+
+  return scraped_data
+
+
+
+if __name__ == "__main__":
+  seed_repository = "tensorflow/tensorflow"
+  final_data = scrape_github_data(seed_repository)
+
+  # import json
+  # print(json.dumps(final_data, indent=2))
