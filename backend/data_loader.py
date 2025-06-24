@@ -75,3 +75,43 @@ def preprocess_data(users_df, repos_df):
   print(f'Repository feature shape: {repo_features.shape}')
 
   return user_bio_features, repo_features
+
+
+
+# --- 3. GraphTensor Creation ---
+
+def create_graph_tensor(users_df, repos_df, stars_df, user_features, repo_features):
+  """
+  Assambles the final GraphTensor object
+  """
+  #? Create mapping from unique IDs (login/fullname)
+  user_map = {login: i for i, login in enumerate(users_df['login'])}
+  repo_map = {name: i for i, name in enumerate(repos_df['fullname'])}
+
+  #? Map the source and target of edges to integer indices
+  source_indices = stars_df['source'].map(user_map).to_numpy()
+  target_indices = stars_df['target'].map(repo_map).to_numpy()
+
+  graph = tfgnn.GraphTensor.from_pieces(
+    node_sets={
+      'user': tfgnn.NodeSet.from_fields(
+        sizes = [len(users_df)],
+        features = {'feat': tf.constant(user_features, dtype=tf.float32)}
+      ),
+      'repo': tfgnn.NodeSet.from_fields(
+        sizes = [len(repos_df)],
+        features = {'feat': tf.constant(repo_features, dtype=tf.float32)}
+      )
+    },
+    edge_sets = {
+      'stars': tfgnn.EdgeSet.from_fields(
+        sizes = [len(stars_df)],
+        adjacency = tfgnn.Adjacency.from_indices(
+          source=('user', tf.constant(source_indices, dtype=tf.int32)),
+          target=('repo', tf.constant(target_indices, dtype=tf.int32))
+        )
+      )
+    }
+  )
+
+  return graph
