@@ -115,3 +115,34 @@ def create_graph_tensor(users_df, repos_df, stars_df, user_features, repo_featur
   )
 
   return graph
+
+
+#* --- Main Execution Block ---
+
+if __name__ == "__main__":
+  driver = None
+  try:
+    #? Connect to database and fetch data
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    driver.verify_connectivity()
+    print("--- Successfully connected to Neo4j. Fetching data... ---")
+
+    users_df, repos_df, stars_df = fetch_data(driver)
+
+    #? Preprocess data
+    print("\n--- Preprocessing data and engineering features... ---")
+    user_features, repo_features = preprocess_data(users_df, repos_df)
+
+    #? Create graph tensor
+    print("\n--- Assembling the GraphTensor... ---")
+    graph_tensor = create_graph_tensor(users_df, repos_df, stars_df, user_features, repo_features)
+
+    print("\n--- GraphTensor created successfully! ---")
+    print("Here is the structure of your graph:")
+    print(graph_tensor)
+
+  except Exception as e:
+    print(f'An error occured: {e}')
+  finally:
+    if driver:
+      driver.close()
