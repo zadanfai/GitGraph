@@ -1,6 +1,6 @@
 import os 
 from dotenv import load_dotenv
-from github import Github, RateLimitExceededException, GithubExceptoin
+from github import Github, RateLimitExceededException, GithubException
 from neo4j import GraphDatabase
 import time
 
@@ -72,7 +72,7 @@ def scrape_github_data(seed_repo_name, max_repos=50, max_stargazers=50):
 
       #? Saved repo data
       scraped_data['repos'][repo.full_name] = get_repo_data(repo)
-      scraped_repos.append(repo.full_name)
+      scraped_repos.add(repo.full_name)
 
       #? Explore stargazers of this repo
       print(f" Fetching stargazers...")
@@ -103,7 +103,7 @@ def scrape_github_data(seed_repo_name, max_repos=50, max_stargazers=50):
       print("!!! Rate limit exceeded. Waiting for 60 seconds. !!!")
       time.sleep(60)
       repos_to_scrape.add(current_repo_name)
-    except GithubExceptoin as e:
+    except GithubException as e:
       print(f"!!! An error occurred for repo {current_repo_name}: {e} !!!")
     except Exception as e:
       print(f" Unexpeceted error occured: {e}")
