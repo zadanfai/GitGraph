@@ -41,3 +41,37 @@ def fetch_data(driver):
     print(f'Fetched {len(stars_df)} STARS relationship')
   
   return user_df, repos_df, stars_df
+
+
+
+# --- 2. Data Preprocessing & Feature Engineering ---
+
+def preprocess_data(users_df, repos_df):
+
+  #? Missing Text Data
+  users_df['bio'].fillna('', inplace=True)
+  repos_df['description'].fillna('', inplace=True)
+  repos_df['language'].fillna('', inplace=True)
+
+  #? Missing numerical data
+  repos_df['stargazers_count'].fillna(0, inplace=True)
+
+  #! Feature Engineering
+  #? TF-IDF
+  all_text = pd.concat([users_df['bio'], repos_df['description'], repos_df['language']], ignore_index=True)
+  vectorizer = TfidfVectorizer(max_features=128)
+  vectorizer.fit(all_text)
+
+  #? Transfrom text to numerical feature
+  user_bio_features = vectorizer.transform(users_df['bio']).toarray()
+  repo_desc_features = vectorizer.transform(repos_df['description']).toarray()
+  repo_lang_features = vectorizer.transform(repos_df['language']).toarray()
+
+  #? Reshape star count into 2d array
+  repo_stars = repos_df[['stargazers_count']].to_numpy(dtype=np.float32)
+  repo_features = np.concatenate([repo_desc_features, repo_lang_features, repo_stars], axis=1)
+
+  print(f'User feature shape: {user_bio_features.shape}')
+  print(f'Repository feature shape: {repo_features.shape}')
+
+  return user_bio_features, repo_features
