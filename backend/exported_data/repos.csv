@@ -1,0 +1,101 @@
+full_name,language,description,stargazers_count
+tensorflow/tensorflow,C++,An Open Source Machine Learning Framework for Everyone,190470
+google-deepmind/einshape,Python,,104
+ujjwalkarn/Machine-Learning-Tutorials,,"machine learning and deep learning tutorials, articles and other resources ",16313
+thelilypad/systematic-trader,Python,,152
+eugenium/DGL,Jupyter Notebook,,30
+kaistAI/CINGS,,,2
+lizardsystems/yawl-controller,Batchfile,Yet another WLED controller,194
+geeeeeeeeek/electronic-wechat,JavaScript,:speech_balloon: A better WeChat on macOS and Linux. Built with Electron by Zhongyi Tong.,13920
+RLHFlow/RLHF-Reward-Modeling,Python,Recipes to train reward model for RLHF.,1382
+sergiodxa/remix-auth-oauth2,TypeScript,A OAuth2Strategy for Remix Auth,187
+jrvosse/amalgame,Prolog,Amalgame: a SKOS vocabulary alignment tool,10
+koush/AndroidAsync,Java,"Asynchronous socket, http(s) (client+server) and websocket library for android. Based on nio, not threads.",7545
+tongyx361/Awesome-LLM4Math,,"Curation of resources for LLM mathematical reasoning, most of which are screened by @tongyx361 to ensure high quality and accompanied with elaborately-written concise descriptions to help readers get the gist as quickly as possible.",130
+boostorg/boost,HTML,Super-project for modularized Boost,7747
+ml-tooling/best-of-ml-python,,🏆 A ranked list of awesome machine learning Python libraries. Updated weekly.,20316
+ISEEKYAN/mbridge,Python,,38
+ServiceNow/BrowserGym,Python,"🌎💪 BrowserGym, a Gym environment for web task automation",781
+aliyun/speedpix-go,Go,,6
+Eric-mingjie/rethinking-network-pruning,Python,Rethinking the Value of Network Pruning (Pytorch) (ICLR 2019),1513
+IDmedia/hass-unraid,Python,This Docker container parses and forwards all WebSocket messages from your Unraid server to Home Assistant using the MQTT protocol,143
+DorsaRoh/Machine-Learning,Jupyter Notebook,ML from scratch,1933
+sinshu/mafia-monogame,C#,,1
+boson-ai/RPBench-Auto,Python,An automated pipeline for evaluating LLMs for role-playing.,186
+codergautam/worldguessr,JavaScript,Free & Open source version of Geoguessr,256
+b7leung/MLE-Flashcards,,"200+ detailed flashcards useful for reviewing topics in machine learning, computer vision, and computer science.",2104
+rom1504/img2dataset,Python,"Easily turn large sets of image urls to an image dataset. Can download, resize and package 100M urls in 20h on one machine.",4069
+DeepSceneSeg/EfficientPS,Python,PyTorch code for training EfficientPS for Panoptic Segmentation,546
+modelscope/easydistill,Python,a toolkit on knowledge distillation for large language models,92
+swanmatch/MxLEDBitPCB,,,238
+eugeneyan/applied-ml,,📚 Papers & tech blogs by companies sharing their work on data science & machine learning in production.,28044
+milanvarady/Applite,Swift,User-friendly GUI macOS application for Homebrew Casks,5084
+khoj-ai/khoj,Python,"Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",30399
+edoakes/pipeline-testing,Python,,1
+jupyter-widgets/ipydatagrid,TypeScript,Fast Datagrid widget for the Jupyter Notebook and JupyterLab,614
+rgoupil/trivia,TypeScript,,1
+out386/aria-telegram-mirror-bot,TypeScript,A Telegram bot to download files via HTTP(S)/BitTorrent and upload them to Google Drive,522
+pacocoursey/cmdk,TypeScript,"Fast, unstyled command menu React component.",11303
+XDagger/xdag,C,XDAG (Dagger Coin) Official Main Repository.  XDAG is a novel DAG based cryptocurrency.,328
+bountysource/core,Ruby,Bountysource is the funding platform for open-source software.,634
+tidwall/gjson,Go,Get JSON values quickly - JSON parser for Go,14997
+dylanebert/gaussian-viewer,Python,,127
+android/compose-samples,Kotlin,Official Jetpack Compose samples.,21770
+dongguanting/In-Context-Learning_PaperList,,Paper List for In-context Learning 🌷,183
+smearle/gym-city,C,"An interface with micropolis for city-building agents, packaged as an OpenAI gym environment",147
+memtest86plus/memtest86plus,C,Official repo for Memtest86+,1253
+ImagineAILab/ai-by-hand-excel,,,4902
+manyfold3d/manyfold,Ruby,A self-hosted digital asset manager for 3d print files.,1256
+ryanburgess/engineer-manager,JavaScript,A list of engineering manager resource links.,10650
+bmoscon/cryptofeed,Python,Cryptocurrency Exchange Websocket Data Feed Handler,2468
+louaaron/Score-Entropy-Discrete-Diffusion,Python,[ICML 2024 Best Paper] Discrete Diffusion Modeling by Estimating the Ratios of the Data Distribution (https://arxiv.org/abs/2310.16834),589
+pytorch/pytorch,Python,Tensors and Dynamic neural networks in Python with strong GPU acceleration,90989
+tombonez/noTunes,Swift,A simple macOS application that will prevent iTunes or Apple Music from launching.,4632
+vccw-team/vccw,Ruby,A Vagrant based development environment.,1018
+htmlburger/wpemerge,PHP,"A modern, MVC-powered WordPress as a CMS workflow. 🚀",454
+isaac-mcfadyen/d1-jdbc-driver,Java,"A JDBC driver for Cloudflare's D1 product, compatible with Jetbrains tools.",109
+NixOS/nix-idea,Java,Nix plugin for the IntelliJ IDEA IDE,195
+Automattic/_s,CSS,"Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.",11021
+LesFerch/FileDialog,C#,Windows command line file and folder dialog for use in scripts,14
+kovshenin/surge,PHP,Surge is a very simple and fast page caching plugin for WordPress.,165
+EvotecIT/PSWordPress,PowerShell,"PSWordPress is PowerShell Module that allows interacting with WordPress using PowerShell via Rest API. It allows to list, create, edit or remove posts, pages, etc.",5
+icip-cas/PPTAgent,Python,PPTAgent: Generating and Evaluating Presentations Beyond Text-to-Slides,1609
+anyproto/anytype-ts,TypeScript,"Official Anytype client for MacOS, Linux, and Windows",5632
+posva/unplugin-vue-router,TypeScript,Next Generation file based typed routing for Vue Router,2016
+cased/kit,Python,"The toolkit for codebase mapping, symbol extraction, and many kinds of code search. Build AI-powered devtools :ship:",520
+cvlab-columbia/viper,Jupyter Notebook,"Code for the paper ""ViperGPT: Visual Inference via Python Execution for Reasoning""",1699
+motiondivision/motion-vscode,HTML,Motion developer tools for VS Code,16
+SRv6d/rpsl-rs,Rust,A Routing Policy Specification Language(RPSL) parser with a focus on speed and correctness.,14
+jhurliman/node-rate-limiter,TypeScript,"A generic rate limiter for node.js. Useful for API clients, web crawling, or other tasks that need to be throttled",1543
+OpenHFT/Chronicle-Queue,Java,Micro second messaging that stores everything to disk,3498
+ASSERT-KTH/repairbench,Jupyter Notebook,Leaderboard of Frontier Models for Program Repair  https://repairbench.github.io/,11
+coder/code-server,TypeScript,VS Code in the browser,72328
+falkTX/Carla,C++,Audio plugin host,1765
+dvjdjvu/gitReposDownloader,Python,,9
+topoteretes/awesome-ai-memory,Python,A list of AI memory projects,147
+anthropics/courses,Jupyter Notebook,Anthropic's educational courses,15817
+C2SP/wycheproof,Go,Project Wycheproof tests crypto libraries against known attacks.,2848
+fastrepl/hyprnote,TypeScript,Privacy-first AI Notepad for back-to-back meetings,2454
+facebookresearch/cruxeval,Python,"CRUXEval: Code Reasoning, Understanding, and Execution Evaluation",146
+gizak/termui,Go,Golang terminal dashboard,13372
+mayneyao/eidos,TypeScript,An extensible framework for Personal Data Management.,2514
+chjj/tty.js,JavaScript,"A terminal for your browser, using node/express/socket.io",4212
+AdamShannag/hookah-ui,Svelte,ui config builder for hookah,21
+neil-morrison44/pocket-sync,TypeScript,"A GUI tool (Mac, Windows, Linux) for doing stuff with the Analogue Pocket",774
+python-openxml/python-docx,Python,Create and modify Word documents with Python,5076
+vipzhicheng/logseq-plugin-vim-shortcuts,TypeScript,Add part of VIM key bindings experience to Logseq,374
+python-arq/arq,Python,Fast job queuing and RPC in python with asyncio and redis.,2532
+nebulab/pulsar,Ruby,Manage your Capistrano deployments with ease,129
+ruvnet/dspy.ts,TypeScript,DS.js (Declarative Self‑learning JavaScript,94
+droidsec/droidsec.github.io,HTML,The droidsec web site!,171
+AutoHotkey/AutoHotkey,C++,AutoHotkey - macro-creation and automation-oriented scripting utility for Windows.,10567
+wg-easy/wg-easy,TypeScript,The easiest way to run WireGuard VPN + Web-based Admin UI.,19932
+wireviz/WireViz,Python,Easily document cables and wiring harnesses.,4637
+chadgeary/cloudblock,HCL,"Cloudblock deploys secure ad-blocking and VPN for all devices. Text and video guides included! 6 supported cloud providers, plus Ubuntu and Raspberry Pi. Cloudblock deploys Wireguard VPN, Pi-Hole DNS Ad-blocking, and DNS over HTTPS in a cloud provider - or locally - using Terraform and Ansible.",854
+TfTHacker/DashboardPlusPlus,,Demonstrating the Dashboard++ method of organizing a vault in Obsidian,990
+mikegc-aws/Lambda-MCP-Server,Python,"Creates a simple MCP tool server with ""streaming"" HTTP.",178
+lancedb/lancedb,Python,"Developer-friendly, embedded retrieval engine for multimodal AI. Search More; Manage Less.",6706
+alisonpezzott/calendar_periods_time_tables_power_bi,M,"Calendar (dates), Periods and Time table for Power BI and Fabric",50
+openjdk/jmc,Java,"Repository for OpenJDK Mission Control, a production time profiling and diagnostics tools suite. https://openjdk.org/projects/jmc",901
+dscripka/signal-desktop-api,Python,,2
+NVIDIA/cuda-samples,C,Samples for CUDA Developers which demonstrates features in CUDA Toolkit,7646
