@@ -3,6 +3,8 @@ import pickle
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from torch_geometric.nn import SAGEConv, HeteroConv
 
 class HeteroGNN(torch.nn.Module):
@@ -88,6 +90,18 @@ print("--- Embeddings generated. Server is ready! ---")
 #* ---- FastAPI ---
 
 app = FastAPI(title = "GitGraph API")
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=origins,
+  allow_credentials=True,
+  allow_methods=['*'],
+  allow_headers=['*'],
+)
 
 @app.get('/recommend/{username}', tags=["Recommendation"])
 def get_recommendations(username: str, top_k: int = 10):
