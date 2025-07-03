@@ -31,7 +31,7 @@ def create_hetero_data_object(users_df, repos_df, stars_df, user_features, repo_
   repo_map = {name: i for i, name in enumerate(repos_df['full_name'])}
 
   source_indices = torch.tensor([user_map.get(login) for login in stars_df['source']], dtype=torch.long)
-  target_indices = torch.tensor([repo_map.get(name) for name in repos_df['target']], dtype=torch.long)
+  target_indices = torch.tensor([repo_map.get(name) for name in stars_df['target']], dtype=torch.long)
 
   edge_index = torch.stack([source_indices, target_indices], dim=0)
 

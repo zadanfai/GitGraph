@@ -36,7 +36,7 @@ class Model(torch.nn.Module):
 
 print("--- Loading model and assets... ---")
 
-ASSETS_PATH = "./backend/model_assets" 
+ASSETS_PATH = "./model_assets" 
 MODEL_STATE_PATH = f"{ASSETS_PATH}/gnn_model_state.pth"
 USER_MAP_PATH = f"{ASSETS_PATH}/user_map.pkl"
 REPO_MAP_PATH = f"{ASSETS_PATH}/repo_map.pkl"
@@ -56,9 +56,9 @@ trained_model.load_state_dict(torch.load(MODEL_STATE_PATH))
 trained_model.eval()
 
 from data_loader import create_hetero_data_object
-import torch_geometric.transform as T
+import torch_geometric.transforms as T
 
-DATA_PATH = './backend/exported_data'
+DATA_PATH = './exported_data'
 users_df = pd.read_csv(f"{DATA_PATH}/users.csv")
 repos_df = pd.read_csv(f"{DATA_PATH}/repos.csv")
 stars_df = pd.read_csv(f"{DATA_PATH}/stars.csv")
@@ -72,7 +72,7 @@ repo_feature_dim = 257
 dummy_user_features = torch.randn(num_users, user_feature_dim)
 dummy_repo_features = torch.randn(num_repos, repo_feature_dim)
 
-graph_data, _, _ = create_hetero_data_object(users_df, repos_df, stars_df, dummy_user_features, dummy_repo_features)
+graph_data = create_hetero_data_object(users_df, repos_df, stars_df, dummy_user_features, dummy_repo_features)
 graph_data_undirected = T.ToUndirected()(graph_data)
 
 
@@ -102,7 +102,7 @@ def get_recommendations(username: str, top_k: int = 10):
   user_idx = user_map[username]
   target_user_embedding = user_embeddings[user_idx]
 
-  similarities = torch.nn.functional.cosine.similarity(
+  similarities = torch.nn.functional.cosine_similarity(
     target_user_embedding.unsqueeze(0),
     repo_embeddings
   )
@@ -113,5 +113,5 @@ def get_recommendations(username: str, top_k: int = 10):
   return {
     "user": username,
     "recommendations": recommended_repos,
-    "similarity_scores": torch.topk(similarities, k=top_k).values_tolist()
+    "similarity_scores": torch.topk(similarities, k=top_k).values.tolist()
   }
